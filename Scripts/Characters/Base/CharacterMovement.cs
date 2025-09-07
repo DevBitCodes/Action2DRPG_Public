@@ -12,20 +12,26 @@ public class CharacterMovement : MonoBehaviour
 
     private Vector2 direction;
     private Rigidbody2D rb;
+    private Health health;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<Health>();
     }
 
     private void Update()
     {
+        if (health.IsDead) return;
+
         Animate();
         Flip();
     }
 
     private void FixedUpdate()
     {
+        if (health.IsDead) return;
+        
         Move();
     }
 
